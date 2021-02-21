@@ -11,6 +11,7 @@ Documentation:
         readFile            : https://nodejs.org/api/fs.html#fs_filehandle_readfile_options
     http module             : https://nodejs.org/api/http.html
         createServer        : https://nodejs.org/api/http.html#http_http_createserver_options_requestlistener
+            Event: 'request': https://nodejs.org/dist/latest-v6.x/docs/api/http.html#http_event_request
             listen          : https://nodejs.org/api/http.html#http_server_listen
             incomingMessage : https://nodejs.org/api/http.html#http_class_http_incomingmessage
                 method      : https://nodejs.org/api/http.html#http_message_method
@@ -26,7 +27,7 @@ Documentation:
     list of types           : https://www.iana.org/assignments/media-types/media-types.xhtml
 */
 
-http.createServer((request, response) => { // request here is actually an http.incomingMessage
+http.createServer((request, response) => { // request here is actually an http.incomingMessage see : https://nodejs.org/dist/latest-v6.x/docs/api/http.html#http_event_request
     if (request.url == '/node/testing') { // since I'm hosting my node instance at */node/ then you have to prefix it with /node for this to work
         response.writeHead(200, {"Content-Type": "text/html"});
         let body = `<!DOCTYPE html>
