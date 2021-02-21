@@ -5,6 +5,7 @@ const fs = require('fs');
 Documentation:
     const                   : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const
     if ... else             : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else
+    Arrow Functions         : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions
     require                 : https://nodejs.org/api/modules.html#modules_require_id
     fs module               : https://nodejs.org/api/fs.html
         readFile            : https://nodejs.org/api/fs.html#fs_filehandle_readfile_options
@@ -38,19 +39,20 @@ http.createServer((request, response) => { // request here is actually an http.i
         <h1>You made it!</h1>
         <p>Welcome!</p>
     </body>
-</html>
-`;
+</html>`;
         response.end(body);
     }
     else if (request.url == '/node/file') {
         fs.readFile(
-            './test.html', function(err, html) {
+            './test.html', (err, data) => { //readFile returns either err or data which is passed to the arrow function
                 if (err) {
                     throw err; 
                 }
-                response.writeHead(200, {"Content-Type": "text/html"});
-                response.write(html);
-                response.end();
+                else {
+                    response.writeHead(200, {"Content-Type": "text/html"});
+                    response.write(data);
+                    response.end();
+                }
             }
         )
     }
