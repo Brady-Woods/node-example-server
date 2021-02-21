@@ -1,10 +1,33 @@
 const http = require('http');
 const fs = require('fs');
 
-http.createServer((request, response) => {
-  const { headers, method, url } = request;
+/*
+Documentation:
+    const                   : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else
+    if ... else             : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else
+    require                 : https://nodejs.org/api/modules.html#modules_require_id
+    fs module               : https://nodejs.org/api/fs.html
+        readFile            : https://nodejs.org/api/fs.html#fs_filehandle_readfile_options
+    http module             : https://nodejs.org/api/http.html
+        createServer        : https://nodejs.org/api/http.html#http_http_createserver_options_requestlistener
+            listen          : https://nodejs.org/api/http.html#http_server_listen
+            incomingMessage : https://nodejs.org/api/http.html#http_class_http_incomingmessage
+                            : https://nodejs.org/api/http.html#http_message_method
+                headers     : https://nodejs.org/api/http.html#http_message_headers
+                url         : https://nodejs.org/api/http.html#http_message_url
+            request         : https://nodejs.org/api/http.html#http_class_http_clientrequest
+            response        : https://nodejs.org/api/http.html#http_class_http_serverresponse
+                writeHead   : https://nodejs.org/api/http.html#http_response_writehead_statuscode_statusmessage_headers
+                write       : https://nodejs.org/api/http.html#http_response_write_chunk_encoding_callback
+                end         : https://nodejs.org/api/http.html#http_response_end_data_encoding_callback
+    200 response            : https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+    Content-Type            : https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type
+    list of types           : https://www.iana.org/assignments/media-types/media-types.xhtml
+*/
+
+http.createServer((request, response) => { // request here is actually an http.incomingMessage
     if (request.url == '/node/testing') { // since I'm hosting my node instance at */node/ then you have to prefix it with /node for this to work
-        response.writeHeader(200, {"Content-Type": "text/html"});
+        response.writeHead(200, {"Content-Type": "text/html"});
         let body = `<!DOCTYPE html>
 <html lang="en">
     <head>
@@ -25,14 +48,14 @@ http.createServer((request, response) => {
                 if (err) {
                     throw err; 
                 }
-                response.writeHeader(200, {"Content-Type": "text/html"});
+                response.writeHead(200, {"Content-Type": "text/html"});
                 response.write(html);
                 response.end();
             }
         )
     }
     else {
-        response.writeHeader(200, {"Content-Type": "text/html"});
+        response.writeHead(200, {"Content-Type": "text/html"});
         response.write('<!DOCTYPE html>');
         response.write('<html lang="en">');
         response.write('<head>');
@@ -46,6 +69,5 @@ http.createServer((request, response) => {
         response.write('</body>');
         response.write('</html>');
         response.end();
-
     }
 }).listen(8080);
