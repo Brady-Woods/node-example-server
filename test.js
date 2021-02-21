@@ -3,7 +3,7 @@ const fs = require('fs');
 
 /*
 Documentation:
-    const                   : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else
+    const                   : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const
     if ... else             : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else
     require                 : https://nodejs.org/api/modules.html#modules_require_id
     fs module               : https://nodejs.org/api/fs.html
